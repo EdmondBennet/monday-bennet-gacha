@@ -15,13 +15,13 @@ tasks = [
     ("500자 쓰기", 0.01, "전설")
 ]
 
-# 희귀도별 컬러
-rarity_colors = {
-    "일반": "gray",
-    "고급": "green",
-    "희귀": "blue",
-    "영웅": "violet",
-    "전설": "red"
+# 마크다운형 희귀도 배지
+badge_markdown = {
+    "일반": ":gray-badge[⚪ 일반]",
+    "고급": ":green-badge[🟢 고급]",
+    "희귀": ":blue-badge[🔵 희귀]",
+    "영웅": ":violet-badge[🟣 영웅]",
+    "전설": ":red-badge[🔴 전설]"
 }
 
 # 항목별 감정선 멘트
@@ -51,11 +51,10 @@ if st.button("✨ 할 일 뽑기 ✨"):
     items, weights, rarities = zip(*tasks)
     chosen = random.choices(list(zip(items, rarities)), weights=weights, k=1)[0]
     task, rarity = chosen
-    color = rarity_colors.get(rarity, "gray")
     emoji = random.choice(emojis)
 
     st.success(f"{emoji} 오늘의 할 일: {task}")
-    st.badge(rarity, color=color)  # ✅ 이거 드디어 넣었다
+    st.markdown(badge_markdown.get(rarity, ":gray-badge[⚪ 일반]"))
     st.caption(reactions.get(task, "오늘도 힘내자!"))
 
 # 하단 문구
