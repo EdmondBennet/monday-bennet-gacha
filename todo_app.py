@@ -2,6 +2,12 @@ import streamlit as st
 import random
 from datetime import date
 
+st.set_page_config(
+    page_title="작가님의 도파민 뽑기",
+    page_icon="🌀",
+    layout="wide"
+)
+
 # --- 데이터 정리 ---
 tasks_writing = [
     ("50자 쓰기", 0.25, "일반"),
@@ -78,7 +84,6 @@ def pick_task(task_list):
 
 # --- 페이지 구성 ---
 today = date.today().strftime("%Y-%m-%d")
-st.set_page_config(page_title="작가님의 도파민 뽑기", page_icon="🌀")
 st.title(f"🌀 {today}의 감정선 루틴")
 st.write("버튼을 누르면 오늘의 운명 같은 작업이 각각 등장합니다.")
 
