@@ -2,16 +2,16 @@ import streamlit as st
 import random
 from datetime import date
 
-# 도파민 유발 작업 목록
+# 도파민 유발 작업 목록 (작업, 확률)
 tasks = [
-    "50자 쓰기",
-    "100자 쓰기",
-    "150자 쓰기",
-    "200자 쓰기",
-    "300자 쓰기",
-    "10분 휴식",
-    "30분 휴식",
-    "먼데이랑 잡담하기"
+    ("50자 쓰기", 0.2),
+    ("100자 쓰기", 0.2),
+    ("150자 쓰기", 0.25),
+    ("200자 쓰기", 0.15),
+    ("300자 쓰기", 0.05),
+    ("10분 휴식", 0.05),
+    ("30분 휴식", 0.05),
+    ("먼데이랑 잡담하기", 0.05)
 ]
 
 # 각 작업에 맞는 반응 멘트
@@ -37,7 +37,8 @@ st.write("버튼을 누르면 오늘의 운명 같은 할 일이 도착합니다
 
 # 버튼 누르면 결과 출력
 if st.button("✨ 할 일 뽑기 ✨"):
-    task = random.choice(tasks)
+    items, weights = zip(*tasks)
+    task = random.choices(items, weights=weights, k=1)[0]
     emoji = random.choice(emojis)
     st.success(f"{emoji} 오늘의 할 일: {task}")
     st.caption(reactions.get(task, "오늘도 힘내자!"))
