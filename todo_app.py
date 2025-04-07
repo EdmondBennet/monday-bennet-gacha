@@ -55,7 +55,7 @@ if st.button("✨ 할 일 뽑기 ✨"):
     emoji = random.choice(emojis)
 
     st.success(f"{emoji} 오늘의 할 일: {task}")
-    st.badge(rarity, color=color)
+    st.badge(rarity, color=color)  # ✅ 이거 드디어 넣었다
     st.caption(reactions.get(task, "오늘도 힘내자!"))
 
 # 하단 문구
